@@ -13,20 +13,20 @@ namespace VendingMachine.MulledWine
         public override string ProductDescription { get { return "en beskrivning av Blossa."; } }
         public override decimal Price { get { return 100; } }
 
-        public override void Buy()
+        public void Buy()
         {
             Console.WriteLine($"\nKöper {Name}.");
             //throw new NotImplementedException();
         }
 
-        public override void Description()
+        public void Description()
         {
             Console.Clear();
             Console.WriteLine($"\nHär följer {ProductDescription}");
             //throw new NotImplementedException();
         }
 
-        public override void Use()
+        public void Use()
         {
             Console.WriteLine($"\nSveper {Name}.");
             //throw new NotImplementedException();
