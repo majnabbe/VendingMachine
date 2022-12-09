@@ -73,9 +73,10 @@ namespace VendingMachine
             }
         }
 
-        public static void SelectedProduct(ProductInformation product)
+        public static void SelectedProduct(IProduct product)
         {
-            ProductInformation selectedProduct = product;
+            // Cast för att komma åt properties från den abstrakta klassen.
+            ProductInformation selectedProduct = (ProductInformation)product;
 
             Console.WriteLine($"\nKategori: {selectedProduct.Category}\nNamn: {selectedProduct.Name}\nPris: {selectedProduct.Price} kr");
 
@@ -92,11 +93,11 @@ namespace VendingMachine
 
                 switch (userChoice)
                 {
-                    case "1": selectedProduct.Description();
+                    case "1": product.Description();
                         ClearScreenAndContinue();
                         break;
                     case "2": 
-                        BuyOrCancel(selectedProduct);
+                        BuyOrCancel(product);
                         break; 
                     case "3":
                         menuLoop = false;
@@ -108,18 +109,16 @@ namespace VendingMachine
             }
         }
 
-        public static void BuyOrCancel(ProductInformation product)
+        public static void BuyOrCancel(IProduct product)
         {
             Console.Clear();
             Console.Write("\nTryck [j] för att genomföra köpet eller annan bokstav för att avbryta: ");
-
-            ProductInformation buyProduct = product;
-
+             
             if (Console.ReadKey().Key == ConsoleKey.J)
             {
                 Console.Clear();
-                buyProduct.Buy();
-                buyProduct.Use();
+                product.Buy();
+                product.Use();
                 ClearScreenAndContinue();
             }
             else

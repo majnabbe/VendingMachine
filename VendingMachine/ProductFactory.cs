@@ -52,11 +52,11 @@ namespace VendingMachine
         //    return product[productType];
         //}
 
-        public static ProductInformation GetHam(string hamType)
+        public static IProduct GetHam(string hamType)
         {
             //IProduct product = null;
 
-            Dictionary<string, ProductInformation> ham = new Dictionary<string, ProductInformation>();
+            Dictionary<string, IProduct> ham = new Dictionary<string, IProduct>();
 
             ham.Add("1", new JakobsdalsHam());
             ham.Add("2", new NybergsHam());
@@ -65,11 +65,11 @@ namespace VendingMachine
             return ham[hamType];
         }
 
-        public static ProductInformation GetMulledWine(string mulledWineType)
+        public static IProduct GetMulledWine(string mulledWineType)
         {
             //IProduct product = null;
 
-            Dictionary<string, ProductInformation> mulledWine = new Dictionary<string, ProductInformation>();
+            Dictionary<string, IProduct> mulledWine = new Dictionary<string, IProduct>();
 
             mulledWine.Add("1", new BlossaWine());
             mulledWine.Add("2", new DufvenkrooksWine());
@@ -78,11 +78,11 @@ namespace VendingMachine
             return mulledWine[mulledWineType];
         }
 
-        public static ProductInformation GetSausage(string sausageType)
+        public static IProduct GetSausage(string sausageType)
         {
             //IProduct product = null;
 
-            Dictionary<string, ProductInformation> sausage = new Dictionary<string, ProductInformation>();
+            Dictionary<string, IProduct> sausage = new Dictionary<string, IProduct>();
 
             sausage.Add("1", new HärrydaKarlssonsSausage());
             sausage.Add("2", new IngelstaSausage());

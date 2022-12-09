@@ -16,17 +16,17 @@ namespace VendingMachine.Ham
 
         public override decimal Price => throw new NotImplementedException();
 
-        public override void Buy()
+        public void Buy()
         {
             throw new NotImplementedException();
         }
 
-        public override void Description()
+        public void Description()
         {
             throw new NotImplementedException();
         }
 
-        public override void Use()
+        public void Use()
         {
             throw new NotImplementedException();
         }
