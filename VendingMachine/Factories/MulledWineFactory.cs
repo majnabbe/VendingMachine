@@ -13,13 +13,13 @@ namespace VendingMachine
         {
             //IProduct product = null;
 
-            Dictionary<string, IProduct> mulledWine = new Dictionary<string, IProduct>();
+            Dictionary<string, IProduct> products = new Dictionary<string, IProduct>();
 
-            mulledWine.Add("1", new BlossaWine());
-            mulledWine.Add("2", new DufvenkrooksWine());
-            mulledWine.Add("3", new SaturnusWine());
+            products.Add("1", new BlossaWine());
+            products.Add("2", new DufvenkrooksWine());
+            products.Add("3", new SaturnusWine());
 
-            return mulledWine[mulledWineType];
+            return products[mulledWineType];
         }
     }
 }

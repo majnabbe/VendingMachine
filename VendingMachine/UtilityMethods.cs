@@ -199,7 +199,7 @@ namespace VendingMachine
 
                 if (String.IsNullOrWhiteSpace(input))
                 {
-                    Console.Write("Du måste ange ett alternativ: ");
+                    Console.Write("\nDu måste ange ett alternativ: ");
                 }
                 else
                 {
@@ -217,10 +217,14 @@ namespace VendingMachine
             Console.Clear();
         }
 
-        public static void WaitBeforeContinuing() 
+        public static void WrongInputInfo() 
         {
-            Console.Write("\nTryck på valfri tangent för att fortsätta. \n");
-            Console.ReadKey();
+            Console.Write("\nFelaktig inmatning.");
+        }
+
+        public static void ClearConsole()
+        {
+            Console.Clear();
         }
     }
 }

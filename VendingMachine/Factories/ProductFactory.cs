@@ -19,13 +19,16 @@ namespace VendingMachine
         {
             ProductFactory factory = null;
 
-            switch (factoryType)
+            switch (factoryType) 
             {
-                case "1":factory =  new HamFactory();
+                case "1":
+                    factory =  new HamFactory();
                     break;
-                case "2": factory = new MulledWineFactory();
+                case "2":
+                    factory = new MulledWineFactory();
                     break;
-                case "3": factory = new SausageFactory();
+                case "3": 
+                    factory = new SausageFactory();
                     break;                  
             }
 
@@ -40,7 +43,7 @@ namespace VendingMachine
             //{
             //    return new MulledWineFactory();
             //}
-            //else
+            //else if
             //{
             //    return new SausageFactory();
             //}

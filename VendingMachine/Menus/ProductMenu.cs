@@ -10,7 +10,7 @@ namespace VendingMachine.Menus
     {
         public static void Menu(ProductFactory productFactory)
         {
-            Console.Clear();
+            UtilityMethods.ClearConsole();  
 
             bool menuLoop = true;
 
@@ -18,20 +18,37 @@ namespace VendingMachine.Menus
             {
                 //Console.Clear();
 
+                //Console.WriteLine("\nVälj skinka:\n\n1. Jakobsdals julskinka\n2. Nybergs Deli Julskinka\n3. Scan julskinka\n----------------\n4. Återgå\n");
                 //Console.WriteLine("\nVälj glögg:\n\n1. Blossa\n2. Dufvenkrooks\n3. Saturnus\n----------------\n4. Återgå\n");
+                //Console.WriteLine("\nVälj prinskorv:\n\n1. Härryda Karlssons prinskorv\n2. Ingelsta kalkonprinskorv\n3. Scan prinskorv\n----------------\n4. Återgå\n");
 
-                Console.WriteLine("Välj produkt: \n");
 
-                for (int i = 1; i < 4; i++)
+                switch (productFactory.GetType().Name)
                 {
-                    ProductInformation selectedProduct = (ProductInformation)productFactory.GetProduct(i.ToString());
-
-                    Console.WriteLine($"{i}. {selectedProduct.Name}");
+                    case "HamFactory":
+                        PrintMenu.HamMenu();
+                        break;
+                    case "MulledWineFactory":
+                        PrintMenu.MulledWineMenu(); 
+                        break;
+                    case "SausageFactory":
+                        PrintMenu.SausageMenu();
+                        break;
                 }
+                
 
-                Console.WriteLine("---------------\n4. Återgå\n");
+                //Console.WriteLine("Välj produkt: \n");
 
-                Console.Write("Ditt val: ");
+                //for (int i = 1; i < 4; i++)
+                //{
+                //    ProductInformation selectedProduct = (ProductInformation)productFactory.GetProduct(i.ToString());
+
+                //    Console.WriteLine($"{i}. {selectedProduct.Name}");
+                //}
+
+                //Console.WriteLine("---------------\n4. Återgå\n");
+
+                //Console.Write("Ditt val: ");
 
                 string userChoice = UtilityMethods.CustomerInput();
 
@@ -44,10 +61,10 @@ namespace VendingMachine.Menus
                         break;
                     case "4":
                         menuLoop = false;
-                        Console.Clear();
+                        UtilityMethods.ClearConsole();
                         break;
                     default:
-                        Console.Write("Felaktig inmatning. Försök igen: ");
+                        UtilityMethods.WrongInputInfo();
                         UtilityMethods.ClearScreenAndContinue();
                         break;
                 }

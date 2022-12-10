@@ -10,7 +10,7 @@ namespace VendingMachine.Menus
     {
         public static void Menu(IProduct product)
         {
-            Console.Clear();
+            UtilityMethods.ClearConsole();
 
             // Cast för att komma åt properties från den abstrakta klassen.
             ProductInformation selectedProduct = (ProductInformation)product;
@@ -23,10 +23,12 @@ namespace VendingMachine.Menus
             {
                 //Console.Clear();
 
-                Console.WriteLine($"Kategori: {selectedProduct.Category}\nNamn: {selectedProduct.Name}\nPris: {selectedProduct.Price} kr");
+                //Console.WriteLine($"Kategori: {selectedProduct.Category}\nNamn: {selectedProduct.Name}\nPris: {selectedProduct.Price} kr");
 
-                Console.WriteLine("\n1. Visa beskrivning\n2. Köp\n ----------------\n3. Återgå.\n");
-                Console.Write("Ditt val: ");
+                //Console.WriteLine("\n1. Visa beskrivning\n2. Köp\n ----------------\n3. Återgå.\n");
+                //Console.Write("Ditt val: ");
+
+                PrintMenu.SelectedProductMenu(selectedProduct);
 
                 string userChoice = UtilityMethods.CustomerInput();
 
@@ -41,10 +43,10 @@ namespace VendingMachine.Menus
                         break;
                     case "3":
                         menuLoop = false;
-                        Console.Clear();
+                        UtilityMethods.ClearConsole();
                         break;
                     default:
-                        Console.Write("Felaktig inmatning. Försök igen: ");
+                        UtilityMethods.WrongInputInfo();
                         UtilityMethods.ClearScreenAndContinue();
                         break;
                 }
