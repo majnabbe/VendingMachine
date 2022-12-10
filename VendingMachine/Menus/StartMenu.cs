@@ -10,7 +10,7 @@ namespace VendingMachine.Menus
     {
         public static void Menu()
         {
-            Console.Clear();
+            UtilityMethods.ClearConsole();
 
             bool menuLoop = true;
 
@@ -18,10 +18,12 @@ namespace VendingMachine.Menus
             {
                 //Console.Clear();
 
-                Console.WriteLine("***** Varuautomat *****\n");
+                //Console.WriteLine("***** Varuautomat *****\n");
 
-                Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta\n");
-                Console.Write("Ditt val: ");
+                //Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta\n");
+                //Console.Write("Ditt val: ");
+
+                PrintMenu.StartMenu();  
 
                 string userChoice = UtilityMethods.CustomerInput();
 
@@ -30,14 +32,15 @@ namespace VendingMachine.Menus
                     case "1":
                     case "2":
                     case "3":
-                        ProductFactory pf = ProductFactory.CreateProductFactory(userChoice);
-                        ProductMenu.Menu(pf);
+                        //ProductFactory pf = ProductFactory.CreateProductFactory(userChoice);
+                        ProductMenu.Menu(ProductFactory.CreateProductFactory(userChoice));
                         break;
                     case "4":
                         menuLoop = false;
+                        Console.WriteLine("\nProgrammet avslutas.");
                         break;
                     default:
-                        Console.Write("Felaktig inmatning. Försök igen: ");
+                        UtilityMethods.WrongInputInfo();    
                         UtilityMethods.ClearScreenAndContinue();
                         break;
                 }

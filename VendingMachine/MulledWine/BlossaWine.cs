@@ -10,7 +10,7 @@ namespace VendingMachine.MulledWine
     {
         public override string Category { get { return "Glögg"; } }
         public override string Name { get { return "Blossa lättglögg"; } }
-        public override string ProductDescription { get { return "En lättglögg med 2,2 % volymprocent alkohol. Volym 750 ml."; } }
+        public override string ProductDescription { get { return "En lättglögg med 2,2 % alkohol. Volym 750 ml."; } }
         public override decimal Price { get { return 29; } }
 
         public void Buy()

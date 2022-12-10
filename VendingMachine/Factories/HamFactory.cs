@@ -13,13 +13,13 @@ namespace VendingMachine
         {
             //IProduct product = null;
 
-            Dictionary<string, IProduct> ham = new Dictionary<string, IProduct>();
+            Dictionary<string, IProduct> products = new Dictionary<string, IProduct>();
 
-            ham.Add("1", new JakobsdalsHam());
-            ham.Add("2", new NybergsHam());
-            ham.Add("3", new ScanHam());
+            products.Add("1", new JakobsdalsHam());
+            products.Add("2", new NybergsHam());
+            products.Add("3", new ScanHam());
 
-            return ham[hamType];
+            return products[hamType];
         }
     }
 }

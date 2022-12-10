@@ -26,7 +26,7 @@ namespace VendingMachine.Sausage
 
         public void Use()
         {
-            Console.WriteLine($"\nSväljer {Name} och mår lite illa.");
+            Console.WriteLine($"\nSväljer en hel {Name} och mår illa.");
         }
     }
 }

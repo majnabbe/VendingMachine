@@ -10,19 +10,20 @@ namespace VendingMachine.Menus
     {
         public static void Menu(IProduct product)
         {
-            Console.Clear();
-            Console.Write("Tryck [k] för att genomföra köpet eller annan bokstav för att avbryta: ");
+            UtilityMethods.ClearConsole();
+
+            PrintMenu.BuyOrCancelMenu();
 
             if (Console.ReadKey().Key == ConsoleKey.K)
             {
-                Console.Clear();
+                UtilityMethods.ClearConsole();
                 product.Buy();
                 product.Use();
                 UtilityMethods.ClearScreenAndContinue();
             }
             else
             {
-                Console.Clear();
+                UtilityMethods.ClearConsole();
                 return;
             }
         }
