@@ -1,4 +1,5 @@
-﻿using VendingMachine.MulledWine;
+﻿using VendingMachine.Menus;
+using VendingMachine.MulledWine;
 
 namespace VendingMachine
 {
@@ -17,7 +18,7 @@ namespace VendingMachine
             //Console.WriteLine($"\nKategori: {selectedProduct.Category}\nNamn: {selectedProduct.Name}" +
             //    $"\nBeskrivning: {selectedProduct.ProductDescription}\nPris: {selectedProduct.Price}");
 
-            Menu.StartMenu();
+            StartMenu.Menu();
         }
     }
 }

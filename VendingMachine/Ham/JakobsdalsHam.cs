@@ -8,27 +8,25 @@ namespace VendingMachine.Ham
 {
     public class JakobsdalsHam : ProductInformation, IProduct
     {
-        public override string Category => throw new NotImplementedException();
-
-        public override string Name => throw new NotImplementedException();
-
-        public override string ProductDescription => throw new NotImplementedException();
-
-        public override decimal Price => throw new NotImplementedException();
+        public override string Category { get { return "Skinka"; } }
+        public override string Name { get { return "Jakobsdals julskinka"; } }
+        public override string ProductDescription { get { return "Senapsgriljerad julskinka. Vikt 0,8 kg."; } }
+        public override decimal Price { get { return 139; } }
 
         public void Buy()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Köper {Name}.");
         }
 
         public void Description()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine($"Beskrivning: {ProductDescription}");
         }
 
         public void Use()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"\nSätter in {Name} i ugnen.");
         }
     }
 }

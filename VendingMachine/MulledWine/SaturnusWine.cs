@@ -8,27 +8,25 @@ namespace VendingMachine.MulledWine
 {
     public class SaturnusWine : ProductInformation, IProduct
     {
-        public override string Category => throw new NotImplementedException();
-
-        public override string Name => throw new NotImplementedException();
-
-        public override string ProductDescription => throw new NotImplementedException();
-
-        public override decimal Price => throw new NotImplementedException();
+        public override string Category { get { return "Glögg"; } }
+        public override string Name { get { return "Saturnus 1893 alkoholfri glögg"; } }
+        public override string ProductDescription { get { return "En alkoholfri glögg. Innehåller sulfiter. Volym 750 ml."; } }
+        public override decimal Price { get { return 30; } }
 
         public void Buy()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Köper {Name}.");
         }
 
         public void Description()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine($"Beskrivning: {ProductDescription}");
         }
 
         public void Use()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"\nHäller ut felköpet {Name}.");
         }
     }
 }
