@@ -39,9 +39,12 @@ namespace VendingMachine.Menus
                         UtilityMethods.ClearScreenAndContinue();
                         break;
                     case "2":
-                        BuyOrCancelMenu.Menu(product);
+                        Wallet.InsertMoney();
                         break;
                     case "3":
+                        BuyOrCancelMenu.Menu(product);
+                        break;
+                    case "4":
                         menuLoop = false;
                         UtilityMethods.ClearConsole();
                         break;

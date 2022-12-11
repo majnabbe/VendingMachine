@@ -20,7 +20,7 @@ namespace VendingMachine
         {
             Console.WriteLine($"Kategori: {info.Category}\nNamn: {info.Name}\nPris: {info.Price} kr");
 
-            Console.WriteLine("\n1. Visa beskrivning\n2. Köp\n ----------------\n3. Återgå.\n");
+            Console.WriteLine("\n1. Visa beskrivning\n2. Mata in pengar\n3. Köp\n ----------------\n4. Återgå.\n");
             Console.Write("Ditt val: ");
         }
 
@@ -31,19 +31,19 @@ namespace VendingMachine
 
         public static void HamMenu()
         {
-            Console.WriteLine("\nVälj skinka:\n\n1. Jakobsdals julskinka\n2. Nybergs Deli Julskinka\n3. Scan julskinka\n----------------\n4. Återgå\n");
+            Console.WriteLine("Välj skinka:\n\n1. Jakobsdals julskinka\n2. Nybergs Deli Julskinka\n3. Scan julskinka\n----------------\n4. Återgå\n");
             Console.Write("Ditt val: ");
         }
 
         public static void MulledWineMenu()
         {
-            Console.WriteLine("\nVälj glögg:\n\n1. Blossa\n2. Dufvenkrooks\n3. Saturnus\n----------------\n4. Återgå\n");
+            Console.WriteLine("Välj glögg:\n\n1. Blossa\n2. Dufvenkrooks\n3. Saturnus\n----------------\n4. Återgå\n");
             Console.Write("Ditt val: ");
         }
 
         public static void SausageMenu()
         {
-            Console.WriteLine("\nVälj prinskorv:\n\n1. Härryda Karlssons prinskorv\n2. Ingelsta kalkonprinskorv\n3. Scan prinskorv\n----------------\n4. Återgå\n");
+            Console.WriteLine("Välj prinskorv:\n\n1. Härryda Karlssons prinskorv\n2. Ingelsta kalkonprinskorv\n3. Scan prinskorv\n----------------\n4. Återgå\n");
             Console.Write("Ditt val: ");
         }  
     }

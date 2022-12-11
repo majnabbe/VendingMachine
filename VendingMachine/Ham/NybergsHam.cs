@@ -11,7 +11,7 @@ namespace VendingMachine.Ham
         public override string Category { get { return "Skinka"; } }
         public override string Name { get { return "Nybergs Deli julskinka"; } }
         public override string ProductDescription { get { return "Kokt julskinka med svål. Vikt ca 2 kg."; } }
-        public override decimal Price { get { return 118; } }
+        public override int Price { get { return 118; } }
 
         public void Buy()
         {

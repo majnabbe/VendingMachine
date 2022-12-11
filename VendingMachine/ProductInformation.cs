@@ -11,7 +11,8 @@ namespace VendingMachine
         public abstract string Category { get; }
         public abstract string Name { get; }
         public abstract string ProductDescription { get; }
-        public abstract decimal Price { get; }
+        // Har valt int isället för decimal eftersom det bara handlas med hela kronor i uppgiften.
+        public abstract int Price { get; }
 
         //// Implementerar inte interfacets metoder. Det sker i produktklasserna.
         //public abstract void Buy();

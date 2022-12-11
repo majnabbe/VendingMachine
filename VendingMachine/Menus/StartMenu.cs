@@ -37,7 +37,8 @@ namespace VendingMachine.Menus
                         break;
                     case "4":
                         menuLoop = false;
-                        Console.WriteLine("\nProgrammet avslutas.");
+                        UtilityMethods.ClearConsole();  
+                        Console.WriteLine("Programmet avslutas. Tryck på valfri tangent för att stänga fönstret.");
                         break;
                     default:
                         UtilityMethods.WrongInputInfo();    

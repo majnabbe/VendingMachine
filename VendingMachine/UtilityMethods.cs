@@ -191,7 +191,7 @@ namespace VendingMachine
         public static string CustomerInput()
         {
             bool inputLoop = true;
-            string input = String.Empty;
+            string? input = String.Empty;
 
             while (inputLoop)
             {

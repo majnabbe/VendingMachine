@@ -11,7 +11,7 @@ namespace VendingMachine.Sausage
         public override string Category { get { return "Prinskorv"; } }
         public override string Name { get { return "Ingelsta kalkonprinskorv"; } }
         public override string ProductDescription { get { return "Kalkonprinskorv av svensk fågel. Vikt 320g."; } }
-        public override decimal Price { get { return 57; } }
+        public override int Price { get { return 57; } }
 
         public void Buy()
         {

@@ -11,7 +11,7 @@ namespace VendingMachine.Sausage
         public override string Category { get { return "Prinskorv"; } }
         public override string Name { get { return "Härryda Karlssons prinskorv"; } }
         public override string ProductDescription { get { return "Skinnfri prinskorv. Vikt 300 g. "; } }
-        public override decimal Price { get { return 38; } }
+        public override int Price { get { return 38; } }
 
         public void Buy()
         {
