@@ -7,49 +7,45 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    public class Wallet
+    public sealed class Wallet
     {
-        //public Dictionary<string, int> UserWallet { get; set; }
+        // Singelton
+        private static readonly Wallet instance = new Wallet();
         public Dictionary<int, int> UserWallet { get; set; }
-        public int InsertedMoney { get; set; } = 0;
+        public int TotalAmountInserted { get; set; }
 
-        public Wallet()
+        private Wallet()
         {
-            //UserWallet.Add("enkronor", 10);
-            //UserWallet.Add("femkronor", 10);
-            //UserWallet.Add("tiokronor", 10);
-            //UserWallet.Add("tjugolappar", 0);
-            //UserWallet.Add("femtiolappar", 0);
-            //UserWallet.Add("hundralappar", 0);
-
-            // De olika valörerna och dess antal.
+            // De olika valörerna och dess summa.
             UserWallet = new Dictionary<int, int>() 
             { 
                 { 1, 10 },
-                { 5, 10 },
-                { 10, 10 },
+                { 5, 50 },
+                { 10, 100 },
                 { 20, 0 },
                 { 50, 0 },
                 { 100, 0 }
             };
+
+            TotalAmountInserted = 0;
         }
 
-        public void TotalAmountOfInsertedMoney()
+        public static Wallet GetWallet() 
         {
-            //InsertMoney += 
+            return instance;
         }
 
-        public void CheckWallet(Wallet wallet)
+        public void TotalAmountOfInsertedMoney(int money)
         {
-            if (wallet.UserWallet.Any(x => x.Value.Equals(0)))
-            {
-                Console.WriteLine("Valörens antal är 0.");
-            }
+            TotalAmountInserted += money;
+
+            Console.WriteLine($"Inmatat belopp: {TotalAmountInserted} kr.\n");
         }
+
 
         public static void InsertMoney()
         {
-            Wallet newWallet = new Wallet();
+            var newWallet = Wallet.GetWallet();
 
             bool menuLoop = true;
 
@@ -58,15 +54,15 @@ namespace VendingMachine
 
             while (menuLoop)
             {
-                Console.WriteLine("\nPlånboken innehåller\n");
+                Console.WriteLine("\nPlånboken innehåller: \n");
                 foreach (KeyValuePair<int, int> item in newWallet.UserWallet)
                 {
                     if (item.Key >= 20) coinOrNote = "sedlar";
 
-                    Console.WriteLine($"{item.Value} st. {item.Key}-kronors {coinOrNote}.");
+                    Console.WriteLine($"{item.Value} kr i {item.Key}-kronors{coinOrNote}.");
                 }
 
-                Console.WriteLine("Välj valör att mata in:\n1. En enkrona\n2. En femkrona\n3. En tiokrona\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Klar\n");
+                Console.WriteLine("\nVälj valör att mata in:\n1. En enkrona\n2. En femkrona\n3. En tiokrona\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Klar\n");
                 Console.Write("Ditt val: ");
 
                 string userChoice = UtilityMethods.CustomerInput();
@@ -80,6 +76,7 @@ namespace VendingMachine
                             break;
                         }
                         newWallet.UserWallet[1] -= 1;
+                        newWallet.TotalAmountOfInsertedMoney(1);
                         break;
                     case "2":
                         if (newWallet.UserWallet[5] == 0)
@@ -87,7 +84,8 @@ namespace VendingMachine
                             Console.WriteLine("Slut på valören.");
                             break;
                         }
-                        newWallet.UserWallet[5] -= 1;
+                        newWallet.UserWallet[5] -= 5;
+                        newWallet.TotalAmountOfInsertedMoney(5);
                         break; 
                     case "3":
                         if (newWallet.UserWallet[10] == 0)
@@ -95,7 +93,8 @@ namespace VendingMachine
                             Console.WriteLine("Slut på valören.");
                             break;
                         }
-                        newWallet.UserWallet[10] -= 1;
+                        newWallet.UserWallet[10] -= 10;
+                        newWallet.TotalAmountOfInsertedMoney(10);
                         break; 
                     case "4":
                         if (newWallet.UserWallet[20] == 0)
@@ -103,7 +102,8 @@ namespace VendingMachine
                             Console.WriteLine("Slut på valören.");
                             break;
                         }
-                        newWallet.UserWallet[20] -= 1;
+                        newWallet.UserWallet[20] -= 20;
+                        newWallet.TotalAmountOfInsertedMoney(20);
                         break;
                     case "5":
                         if (newWallet.UserWallet[50] == 0)
@@ -111,7 +111,8 @@ namespace VendingMachine
                             Console.WriteLine("Slut på valören.");
                             break;
                         }
-                        newWallet.UserWallet[50] -= 1;
+                        newWallet.UserWallet[50] -= 50;
+                        newWallet.TotalAmountOfInsertedMoney(50);
                         break; 
                     case "6":
                         if (newWallet.UserWallet[100] == 0)
@@ -119,7 +120,8 @@ namespace VendingMachine
                             Console.WriteLine("Slut på valören.");
                             break;
                         }
-                        newWallet.UserWallet[100] -= 1;
+                        newWallet.UserWallet[100] -= 100;
+                        newWallet.TotalAmountOfInsertedMoney(100);
                         break;
                     case "7":
                         menuLoop = false;
