@@ -18,7 +18,7 @@ namespace VendingMachine
 
         private Wallet()
         {
-            // De olika valörerna och dess summa.
+            // De olika valörerna och deras summa.
             UserWallet = new Dictionary<int, int>()
             {
                 { 1, 10 },
@@ -37,25 +37,32 @@ namespace VendingMachine
             return instance;
         }
 
+        // Beräknar hur mycket pengar som matats in.
         public void TotalAmountOfInsertedMoney(int money)
         {
             TotalAmountInserted += money;
         }
 
+        // Beräknar hur mycket pengar som är kvar efter ett köp.
         public void MoneyLeftAfterPurchase(int price)
         {
             TotalAmountInserted -= price;
         }
 
+        // Beräknar hur mycket växel som ska returneras och i vilka valörer.
         public void CalculateChange(int amount)
         {
+            // Håller reda på hur många av varje valör som ska returneras.
             int counter = 0;
 
-            Console.WriteLine($"\nVäxel tillbaka totalt {amount}: ");
+            Console.WriteLine($"\nVäxel tillbaka totalt {amount} kr: ");
 
-            // Japp, en trippel-loop.
+            // Japp, en trippel-loop. Upphör när ingen växel finns kvar.
             while (amount != 0)
             {
+                // Delar mängden pengar med de olika valörerna för att se vad som ska returneras. 
+                // Loopen börjar med den högsta valören och om kvoten är minst 1 överstiger växeln
+                // aktuell valör och kan återbetals som sådan.
                 foreach (KeyValuePair<int, int> item in UserWallet.OrderByDescending(key => key.Key))
                 {
                     while (amount / item.Key >= 1)
@@ -71,7 +78,7 @@ namespace VendingMachine
 
                     if (counter >= 1)
                     {
-                        Console.WriteLine($"\n{counter} st. mynt/sedlar av valören {item.Key} kr.");
+                        Console.WriteLine($"\n{counter} st. mynt/sedlar á {item.Key} kr.");
 
                         counter = 0;
                     }
@@ -91,49 +98,52 @@ namespace VendingMachine
             {
                 return false;
             }
-
         }
 
-        public void PrintTOtalAmountOfInsertedMoney()
-        {
-            Console.WriteLine($"Inmatat belopp: {Wallet.GetWallet().TotalAmountInserted} kr.\n");
-        }
+     
 
 
         public void InsertMoney(IProduct product)
         {
+            UtilityMethods.ClearConsole();
+
             var newWallet = Wallet.GetWallet();
 
             bool menuLoop = true;
 
             // För korrekt utskrift (jfr if-satsen nedan).
-            string coinOrNote = "mynt";
+            string coinOrNote = String.Empty;
 
             while (menuLoop)
             {
-                Console.WriteLine("\nPlånboken innehåller: \n");
+                Console.WriteLine("Plånboken innehåller: \n");
 
                 foreach (KeyValuePair<int, int> item in newWallet.UserWallet)
                 {
                     if (item.Key >= 20) coinOrNote = "sedlar";
+                    else coinOrNote = "mynt";
 
                     Console.WriteLine($"{item.Value} kr i {item.Key}-kronors{coinOrNote}.");
                 }
 
-                Console.WriteLine($"\nInmatat belopp: {newWallet.TotalAmountInserted} kr.");
+                //Console.WriteLine($"\nInmatat belopp: {newWallet.TotalAmountInserted} kr.");
 
-                Console.WriteLine("\nVälj valör att mata in:\n\n1. En enkrona\n2. En femkrona\n3. En tiokrona" +
-                    "\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n7. Köp\n----------------\n8. Återgå\n");
-                Console.Write("Ditt val: ");
+                //Console.WriteLine("\nVälj valör att mata in:\n\n1. En enkrona\n2. En femkrona\n3. En tiokrona" +
+                //    "\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Köp\n----------------\n8. Återgå\n");
+                //Console.Write("Ditt val: ");
+
+                PrintMenu.WalletMenu();
 
                 string userChoice = UtilityMethods.CustomerInput();
+
                 UtilityMethods.ClearConsole();
+
                 switch (userChoice)
                 {
                     case "1":
                         if (newWallet.UserWallet[1] == 0)
                         {
-                            Console.WriteLine("Slut på valören.");
+                            PrintMenu.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[1] -= 1;
@@ -142,7 +152,7 @@ namespace VendingMachine
                     case "2":
                         if (newWallet.UserWallet[5] == 0)
                         {
-                            Console.WriteLine("Slut på valören.");
+                            PrintMenu.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[5] -= 5;
@@ -151,7 +161,7 @@ namespace VendingMachine
                     case "3":
                         if (newWallet.UserWallet[10] == 0)
                         {
-                            Console.WriteLine("Slut på valören.");
+                            PrintMenu.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[10] -= 10;
@@ -160,7 +170,7 @@ namespace VendingMachine
                     case "4":
                         if (newWallet.UserWallet[20] == 0)
                         {
-                            Console.WriteLine("Slut på valören.");
+                            PrintMenu.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[20] -= 20;
@@ -169,7 +179,7 @@ namespace VendingMachine
                     case "5":
                         if (newWallet.UserWallet[50] == 0)
                         {
-                            Console.WriteLine("Slut på valören.");
+                            PrintMenu.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[50] -= 50;
@@ -178,7 +188,7 @@ namespace VendingMachine
                     case "6":
                         if (newWallet.UserWallet[100] == 0)
                         {
-                            Console.WriteLine("Slut på valören.");
+                            PrintMenu.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[100] -= 100;
@@ -190,9 +200,10 @@ namespace VendingMachine
                     case "8":
                         menuLoop = false;
                         break;
-                        //default:
-                        //    UtilityMethods.WrongInputInfo();
-                        //    break;
+                    default:
+                        UtilityMethods.WrongInputInfo();
+                        UtilityMethods.ClearScreenAndContinue();
+                        break;
                 }
             }
         }

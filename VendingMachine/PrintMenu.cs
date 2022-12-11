@@ -8,7 +8,7 @@ namespace VendingMachine
 {
     public class PrintMenu
     {
-
+        // Samling av menyutskrifter och liknande.
         public static void VendingMachineText()
         {
             Console.WriteLine("***** Varuautomat *****\n");
@@ -25,6 +25,29 @@ namespace VendingMachine
             Console.WriteLine($"Kategori: {info.Category}\nNamn: {info.Name}\nPris: {info.Price} kr");
 
             Console.WriteLine("\n1. Visa beskrivning\n2. Mata in pengar\n3. Köp\n ----------------\n4. Återgå.\n");
+            Console.Write("Ditt val: ");
+        }
+
+        public static void PrintDenominationUsedUp()
+        {
+            Console.WriteLine("Valören saknas.");
+
+            UtilityMethods.ClearScreenAndContinue();
+        }
+
+        public static void PrintTotalAmountOfInsertedMoney()
+        {
+            Console.WriteLine($"Inmatat belopp: {Wallet.GetWallet().TotalAmountInserted} kr.\n");
+        }
+
+        public static void WalletMenu()
+        {
+            Console.WriteLine();
+
+            PrintTotalAmountOfInsertedMoney();
+
+            Console.WriteLine("Välj valör att mata in eller genomför köp:\n\n1. En enkrona\n2. En femkrona\n3. En tiokrona" +
+                    "\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Köp\n----------------\n8. Återgå\n");
             Console.Write("Ditt val: ");
         }
 
