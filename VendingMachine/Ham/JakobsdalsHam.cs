@@ -24,6 +24,8 @@ namespace VendingMachine.Ham
                 return;
             }
 
+            Wallet.GetWallet().MoneyLeftAfterPurchase(Price);
+
             Console.WriteLine($"Köper {Name}.");
 
             Use();
