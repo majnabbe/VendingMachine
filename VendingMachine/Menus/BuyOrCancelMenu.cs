@@ -18,8 +18,8 @@ namespace VendingMachine.Menus
             {
                 UtilityMethods.ClearConsole();
                 product.Buy();
-                product.Use();
-                UtilityMethods.ClearScreenAndContinue();
+                //product.Use();
+                //UtilityMethods.ClearScreenAndContinue();
             }
             else
             {

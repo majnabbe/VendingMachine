@@ -8,10 +8,14 @@ namespace VendingMachine
 {
     public class PrintMenu
     {
-        public static void StartMenu()
+
+        public static void VendingMachineText()
         {
             Console.WriteLine("***** Varuautomat *****\n");
+        }
 
+        public static void StartMenu()
+        {
             Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta\n");
             Console.Write("Ditt val: ");
         }

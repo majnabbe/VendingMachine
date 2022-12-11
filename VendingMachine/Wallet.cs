@@ -13,6 +13,7 @@ namespace VendingMachine
         private static readonly Wallet instance = new Wallet();
         public Dictionary<int, int> UserWallet { get; set; }
         public int TotalAmountInserted { get; set; }
+        public bool EnoughMoneyInserted { get; set; }
 
         private Wallet()
         {
@@ -38,12 +39,28 @@ namespace VendingMachine
         public void TotalAmountOfInsertedMoney(int money)
         {
             TotalAmountInserted += money;
+        }
 
-            Console.WriteLine($"Inmatat belopp: {TotalAmountInserted} kr.\n");
+        public bool CheckAmount(int price)
+        {
+            if (price >= TotalAmountInserted)
+            {
+                return true;
+            }
+            else 
+            { 
+                return false; 
+            } 
+           
+        }
+
+        public void PrintTOtalAmountOfInsertedMoney()
+        {
+            Console.WriteLine($"Inmatat belopp: {Wallet.GetWallet().TotalAmountInserted} kr.\n");
         }
 
 
-        public static void InsertMoney()
+        public void InsertMoney(ProductInformation prodInfo)
         {
             var newWallet = Wallet.GetWallet();
 
@@ -55,6 +72,7 @@ namespace VendingMachine
             while (menuLoop)
             {
                 Console.WriteLine("\nPlånboken innehåller: \n");
+
                 foreach (KeyValuePair<int, int> item in newWallet.UserWallet)
                 {
                     if (item.Key >= 20) coinOrNote = "sedlar";
@@ -62,11 +80,13 @@ namespace VendingMachine
                     Console.WriteLine($"{item.Value} kr i {item.Key}-kronors{coinOrNote}.");
                 }
 
-                Console.WriteLine("\nVälj valör att mata in:\n1. En enkrona\n2. En femkrona\n3. En tiokrona\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Klar\n");
+                Console.WriteLine($"\nInmatat belopp: {newWallet.TotalAmountInserted} kr.");
+
+                Console.WriteLine("\nVälj valör att mata in:\n\n1. En enkrona\n2. En femkrona\n3. En tiokrona\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Klar (återgår för att göra köp.)\n");
                 Console.Write("Ditt val: ");
 
                 string userChoice = UtilityMethods.CustomerInput();
-
+                UtilityMethods.ClearConsole();
                 switch (userChoice)
                 {
                     case "1":
@@ -126,9 +146,9 @@ namespace VendingMachine
                     case "7":
                         menuLoop = false;
                         break;
-                    //default:
-                    //    UtilityMethods.WrongInputInfo();
-                    //    break;
+                        //default:
+                        //    UtilityMethods.WrongInputInfo();
+                        //    break;
                 }
             }
         }

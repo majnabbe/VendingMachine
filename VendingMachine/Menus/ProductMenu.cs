@@ -22,6 +22,7 @@ namespace VendingMachine.Menus
                 //Console.WriteLine("\nVälj glögg:\n\n1. Blossa\n2. Dufvenkrooks\n3. Saturnus\n----------------\n4. Återgå\n");
                 //Console.WriteLine("\nVälj prinskorv:\n\n1. Härryda Karlssons prinskorv\n2. Ingelsta kalkonprinskorv\n3. Scan prinskorv\n----------------\n4. Återgå\n");
 
+                Wallet.GetWallet().PrintTOtalAmountOfInsertedMoney();
 
                 switch (productFactory.GetType().Name)
                 {

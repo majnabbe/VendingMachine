@@ -11,11 +11,24 @@ namespace VendingMachine.Ham
         public override string Category { get { return "Skinka"; } }
         public override string Name { get { return "Jakobsdals julskinka"; } }
         public override string ProductDescription { get { return "Senapsgriljerad julskinka. Vikt 0,8 kg."; } }
-        public override int Price { get { return 139; } }
+        public override int Price { get { return 13; } }
 
         public void Buy()
         {
+            if (Wallet.GetWallet().CheckAmount(Price))
+            {
+                Console.WriteLine("Du har ej matat in tillräckligt med pengar.");
+
+                UtilityMethods.ClearScreenAndContinue();
+
+                return;
+            }
+
             Console.WriteLine($"Köper {Name}.");
+
+            Use();
+
+            UtilityMethods.ClearScreenAndContinue();
         }
 
         public void Description()

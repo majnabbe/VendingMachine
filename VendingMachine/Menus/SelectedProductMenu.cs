@@ -28,6 +28,8 @@ namespace VendingMachine.Menus
                 //Console.WriteLine("\n1. Visa beskrivning\n2. Köp\n ----------------\n3. Återgå.\n");
                 //Console.Write("Ditt val: ");
 
+                Wallet.GetWallet().PrintTOtalAmountOfInsertedMoney();
+
                 PrintMenu.SelectedProductMenu(selectedProduct);
 
                 string userChoice = UtilityMethods.CustomerInput();
@@ -39,7 +41,7 @@ namespace VendingMachine.Menus
                         UtilityMethods.ClearScreenAndContinue();
                         break;
                     case "2":
-                        Wallet.InsertMoney();
+                        Wallet.GetWallet().InsertMoney(selectedProduct);
                         break;
                     case "3":
                         BuyOrCancelMenu.Menu(product);

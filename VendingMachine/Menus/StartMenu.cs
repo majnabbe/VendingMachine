@@ -23,6 +23,10 @@ namespace VendingMachine.Menus
                 //Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta\n");
                 //Console.Write("Ditt val: ");
 
+                PrintMenu.VendingMachineText();
+
+                Wallet.GetWallet().PrintTOtalAmountOfInsertedMoney();
+
                 PrintMenu.StartMenu();  
 
                 string userChoice = UtilityMethods.CustomerInput();
