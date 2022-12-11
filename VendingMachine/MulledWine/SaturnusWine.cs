@@ -11,7 +11,7 @@ namespace VendingMachine.MulledWine
         public override string Category { get { return "Glögg"; } }
         public override string Name { get { return "Saturnus 1893 alkoholfri glögg"; } }
         public override string ProductDescription { get { return "En alkoholfri glögg. Innehåller sulfiter. Volym 750 ml."; } }
-        public override decimal Price { get { return 30; } }
+        public override int Price { get { return 30; } }
 
         public void Buy()
         {
