@@ -27,7 +27,7 @@ namespace VendingMachine.Menus
 
                 Wallet.GetWallet().PrintTOtalAmountOfInsertedMoney();
 
-                PrintMenu.StartMenu();  
+                PrintMenu.StartMenu();
 
                 string userChoice = UtilityMethods.CustomerInput();
 
@@ -40,12 +40,17 @@ namespace VendingMachine.Menus
                         ProductMenu.Menu(ProductFactory.CreateProductFactory(userChoice));
                         break;
                     case "4":
+                        if (Wallet.GetWallet().TotalAmountInserted > 0)
+                        {
+                            Wallet.GetWallet().CalculateChange(Wallet.GetWallet().TotalAmountInserted);
+                            UtilityMethods.ClearScreenAndContinue();
+                        }
                         menuLoop = false;
-                        UtilityMethods.ClearConsole();  
+                        UtilityMethods.ClearConsole();
                         Console.WriteLine("Programmet avslutas. Tryck på valfri tangent för att stänga fönstret.");
                         break;
                     default:
-                        UtilityMethods.WrongInputInfo();    
+                        UtilityMethods.WrongInputInfo();
                         UtilityMethods.ClearScreenAndContinue();
                         break;
                 }
