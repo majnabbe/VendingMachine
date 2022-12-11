@@ -28,7 +28,7 @@ namespace VendingMachine.Menus
                 //Console.WriteLine("\n1. Visa beskrivning\n2. Köp\n ----------------\n3. Återgå.\n");
                 //Console.Write("Ditt val: ");
 
-                Wallet.GetWallet().PrintTOtalAmountOfInsertedMoney();
+                PrintMenu.PrintTotalAmountOfInsertedMoney();
 
                 PrintMenu.SelectedProductMenu(selectedProduct);
 

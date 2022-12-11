@@ -25,7 +25,7 @@ namespace VendingMachine.Menus
 
                 PrintMenu.VendingMachineText();
 
-                Wallet.GetWallet().PrintTOtalAmountOfInsertedMoney();
+                PrintMenu.PrintTotalAmountOfInsertedMoney();
 
                 PrintMenu.StartMenu();
 
