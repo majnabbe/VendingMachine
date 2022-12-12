@@ -90,7 +90,7 @@ namespace VendingMachine
         // Kollar om priset på produkten har uppnåtts.
         public bool CheckAmount(int price)
         {
-            if (price >= TotalAmountInserted)
+            if (TotalAmountInserted >= price)
             {
                 return true;
             }
