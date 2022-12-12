@@ -10,12 +10,27 @@ namespace VendingMachine.Ham
     {
         public override string Category { get { return "Skinka"; } }
         public override string Name { get { return "Scan julskinka"; } }
-        public override string ProductDescription { get { return "Rimmad julskinka. Vikt ca 1 kg."; } }
-        public override int Price { get { return 110; } }
+        public override string ProductDescription { get { return "Rimmad julskinka. Vikt ca 0,5 kg."; } }
+        public override int Price { get { return 55; } }
 
         public void Buy()
         {
+            if (!Wallet.GetWallet().CheckAmount(Price))
+            {
+                Console.WriteLine("Du har ej matat in tillräckligt med pengar.");
+
+                UtilityMethods.ClearScreenAndContinue();
+
+                return;
+            }
+
+            Wallet.GetWallet().MoneyLeftAfterPurchase(Price);
+
             Console.WriteLine($"Köper {Name}.");
+
+            Use();
+
+            UtilityMethods.ClearScreenAndContinue();
         }
 
         public void Description()
@@ -26,7 +41,7 @@ namespace VendingMachine.Ham
 
         public void Use()
         {
-            Console.WriteLine($"\nGrisfestar med {Name}.");
+            Console.WriteLine($"\nGrisfestar omedelbart med {Name}.");
         }
     }
 }

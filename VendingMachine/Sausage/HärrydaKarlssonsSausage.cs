@@ -15,7 +15,22 @@ namespace VendingMachine.Sausage
 
         public void Buy()
         {
+            if (!Wallet.GetWallet().CheckAmount(Price))
+            {
+                Console.WriteLine("Du har ej matat in tillräckligt med pengar.");
+
+                UtilityMethods.ClearScreenAndContinue();
+
+                return;
+            }
+
+            Wallet.GetWallet().MoneyLeftAfterPurchase(Price);
+
             Console.WriteLine($"Köper {Name}.");
+
+            Use();
+
+            UtilityMethods.ClearScreenAndContinue();
         }
 
         public void Description()
