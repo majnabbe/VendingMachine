@@ -24,7 +24,7 @@ namespace VendingMachine
         {
             Console.WriteLine($"Kategori: {info.Category}\nNamn: {info.Name}\nPris: {info.Price} kr");
 
-            Console.WriteLine("\n1. Visa beskrivning\n2. Mata in pengar\n3. Köp\n ----------------\n4. Återgå.\n");
+            Console.WriteLine("\n1. Visa beskrivning\n2. Mata in pengar\n3. Köp\n4. Växel tillbaka\n ----------------\n5. Återgå.\n");
             Console.Write("Ditt val: ");
         }
 
