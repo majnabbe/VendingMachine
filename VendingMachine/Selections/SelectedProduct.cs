@@ -3,34 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.Selections;
 
-namespace VendingMachine.Menus
+namespace VendingMachine.Selections
 {
-    public class SelectedProductMenu
+    public class SelectedProduct
     {
-        public static void Menu(IProduct product)
+        // Hanterar de olika alternativen för vald produkt.
+        public static void SelectProductAlternatives(IProduct product)
         {
             UtilityMethods.ClearConsole();
 
-            // Cast för att komma åt properties från den abstrakta klassen.
+            // Cast för att komma åt property:erna från den abstrakta klassen.
             ProductInformation selectedProduct = (ProductInformation)product;
-
-            //Console.WriteLine($"Kategori: {selectedProduct.Category}\nNamn: {selectedProduct.Name}\nPris: {selectedProduct.Price} kr");
 
             bool menuLoop = true;
 
             while (menuLoop)
             {
-                //Console.Clear();
+                Menus.PrintTotalAmountOfInsertedMoney();
 
-                //Console.WriteLine($"Kategori: {selectedProduct.Category}\nNamn: {selectedProduct.Name}\nPris: {selectedProduct.Price} kr");
-
-                //Console.WriteLine("\n1. Visa beskrivning\n2. Köp\n ----------------\n3. Återgå.\n");
-                //Console.Write("Ditt val: ");
-
-                PrintMenu.PrintTotalAmountOfInsertedMoney();
-
-                PrintMenu.SelectedProductMenu(selectedProduct);
+                Menus.SelectedProductMenu(selectedProduct);
 
                 string userChoice = UtilityMethods.CustomerInput();
 
@@ -44,7 +37,7 @@ namespace VendingMachine.Menus
                         Wallet.GetWallet().InsertMoney(product);
                         break;
                     case "3":
-                        BuyOrCancelMenu.Menu(product);
+                        BuyOrCancel.BuyProductOrCancel(product);
                         break;
                     case "4":
                         menuLoop = false;

@@ -4,21 +4,24 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using VendingMachine.Menus;
+using VendingMachine.Selections;
 
 namespace VendingMachine
 {
     public sealed class Wallet
     {
+        // Hanterar användarens pengar 
+
         // Singelton
         private static readonly Wallet instance = new Wallet();
+        // Sparar de olika valörerna och deras summa.
         public Dictionary<int, int> UserWallet { get; set; }
+        // Hur mycket pengar som har matats in.
         public int TotalAmountInserted { get; set; }
         public bool EnoughMoneyInserted { get; set; }
 
         private Wallet()
         {
-            // De olika valörerna och deras summa.
             UserWallet = new Dictionary<int, int>()
             {
                 { 1, 10 },
@@ -52,17 +55,19 @@ namespace VendingMachine
         // Beräknar hur mycket växel som ska returneras och i vilka valörer.
         public void CalculateChange(int amount)
         {
+            UtilityMethods.ClearConsole();
+
             // Håller reda på hur många av varje valör som ska returneras.
             int counter = 0;
 
             Console.WriteLine($"\nVäxel tillbaka totalt {amount} kr: ");
 
             // Japp, en trippel-loop. Upphör när ingen växel finns kvar.
-            while (amount != 0)
+            while (amount != 0) 
             {
-                // Delar mängden pengar med de olika valörerna för att se vad som ska returneras. 
+                // Delar växeln med de olika valörerna för att se vad som ska returneras. 
                 // Loopen börjar med den högsta valören och om kvoten är minst 1 överstiger växeln
-                // aktuell valör och kan återbetals som sådan.
+                // aktuell valör och kan återbetals som sådan. Aktuella värden uppdateras sedan.
                 foreach (KeyValuePair<int, int> item in UserWallet.OrderByDescending(key => key.Key))
                 {
                     while (amount / item.Key >= 1)
@@ -78,6 +83,7 @@ namespace VendingMachine
 
                     if (counter >= 1)
                     {
+                        // Hur mycket som returneras av aktuell valör.
                         Console.WriteLine($"\n{counter} st. mynt/sedlar á {item.Key} kr.");
 
                         counter = 0;
@@ -100,9 +106,7 @@ namespace VendingMachine
             }
         }
 
-     
-
-
+        // Ett monster och en skymf mot SOLID. Skriver ut plånboken och hanterar beräkningen av pengarna i den.
         public void InsertMoney(IProduct product)
         {
             UtilityMethods.ClearConsole();
@@ -111,39 +115,36 @@ namespace VendingMachine
 
             bool menuLoop = true;
 
-            // För korrekt utskrift (jfr if-satsen nedan).
-            string coinOrNote = String.Empty;
-
+            // Skriver ut plånbokens innehåll.
             while (menuLoop)
             {
                 Console.WriteLine("Plånboken innehåller: \n");
 
                 foreach (KeyValuePair<int, int> item in newWallet.UserWallet)
                 {
+                    // För korrekt utskrift.
+                    string coinOrNote;
+
                     if (item.Key >= 20) coinOrNote = "sedlar";
                     else coinOrNote = "mynt";
 
                     Console.WriteLine($"{item.Value} kr i {item.Key}-kronors{coinOrNote}.");
                 }
 
-                //Console.WriteLine($"\nInmatat belopp: {newWallet.TotalAmountInserted} kr.");
-
-                //Console.WriteLine("\nVälj valör att mata in:\n\n1. En enkrona\n2. En femkrona\n3. En tiokrona" +
-                //    "\n4. En tjugolapp\n5. En femtiolapp\n6. En hundralapp\n----------------\n7. Köp\n----------------\n8. Återgå\n");
-                //Console.Write("Ditt val: ");
-
-                PrintMenu.WalletMenu();
+                Menus.WalletMenu();
 
                 string userChoice = UtilityMethods.CustomerInput();
 
                 UtilityMethods.ClearConsole();
 
+                // Vilken valör som användaren väljer att mata in och justering av plånbok samt inmatat belopp.
+                // Nej, det är inte bra så här.
                 switch (userChoice)
                 {
                     case "1":
                         if (newWallet.UserWallet[1] == 0)
                         {
-                            PrintMenu.PrintDenominationUsedUp();
+                            Menus.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[1] -= 1;
@@ -152,7 +153,7 @@ namespace VendingMachine
                     case "2":
                         if (newWallet.UserWallet[5] == 0)
                         {
-                            PrintMenu.PrintDenominationUsedUp();
+                            Menus.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[5] -= 5;
@@ -161,7 +162,7 @@ namespace VendingMachine
                     case "3":
                         if (newWallet.UserWallet[10] == 0)
                         {
-                            PrintMenu.PrintDenominationUsedUp();
+                            Menus.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[10] -= 10;
@@ -170,7 +171,7 @@ namespace VendingMachine
                     case "4":
                         if (newWallet.UserWallet[20] == 0)
                         {
-                            PrintMenu.PrintDenominationUsedUp();
+                            Menus.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[20] -= 20;
@@ -179,7 +180,7 @@ namespace VendingMachine
                     case "5":
                         if (newWallet.UserWallet[50] == 0)
                         {
-                            PrintMenu.PrintDenominationUsedUp();
+                            Menus.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[50] -= 50;
@@ -188,14 +189,14 @@ namespace VendingMachine
                     case "6":
                         if (newWallet.UserWallet[100] == 0)
                         {
-                            PrintMenu.PrintDenominationUsedUp();
+                            Menus.PrintDenominationUsedUp();
                             break;
                         }
                         newWallet.UserWallet[100] -= 100;
                         newWallet.TotalAmountOfInsertedMoney(100);
                         break;
                     case "7":
-                        BuyOrCancelMenu.Menu(product);
+                        BuyOrCancel.BuyProductOrCancel(product);
                         break;
                     case "8":
                         menuLoop = false;
