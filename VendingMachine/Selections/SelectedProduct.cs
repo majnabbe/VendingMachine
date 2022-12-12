@@ -39,7 +39,7 @@ namespace VendingMachine.Selections
                     case "3":
                         BuyOrCancel.BuyProductOrCancel(product);
                         break;
-                    case "4":
+                    case "4": 
                         Wallet.GetWallet().ReturnChange();
                         break;
                     case "5":
