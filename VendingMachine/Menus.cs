@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    public class PrintMenu
+    public class Menus
     {
-        // Samling av menyutskrifter och liknande.
+        // Samling av menyutskrifter och liknande. 
         public static void VendingMachineText()
         {
             Console.WriteLine("***** Varuautomat *****\n");
@@ -16,7 +16,7 @@ namespace VendingMachine
 
         public static void StartMenu()
         {
-            Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta\n");
+            Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta (returnerar eventuell växel)\n");
             Console.Write("Ditt val: ");
         }
 

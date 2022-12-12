@@ -8,6 +8,7 @@ namespace VendingMachine
 {
     public interface IProduct
     {
+        // Uppgiftens interface. Alla produkter ärver härifrån.
         void Description();
         void Buy();
         void Use();

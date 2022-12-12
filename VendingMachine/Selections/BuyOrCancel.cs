@@ -4,22 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.Menus
+namespace VendingMachine.Selections
 {
-    public class BuyOrCancelMenu
+    public class BuyOrCancel
     {
-        public static void Menu(IProduct product)
+        // Genomför köpet av en produkt eller avbryter. Tryck på [K] (går med liten bokstav) för att köpa.
+        public static void BuyProductOrCancel(IProduct product)
         {
             UtilityMethods.ClearConsole();
 
-            PrintMenu.BuyOrCancelMenu();
+            Menus.BuyOrCancelMenu();
 
             if (Console.ReadKey().Key == ConsoleKey.K)
             {
                 UtilityMethods.ClearConsole();
                 product.Buy();
-                //product.Use();
-                //UtilityMethods.ClearScreenAndContinue();
             }
             else
             {

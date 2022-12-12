@@ -11,7 +11,7 @@ namespace VendingMachine
     {
         public override IProduct GetProduct(string hamType)
         {
-            //IProduct product = null;
+            // Del av abstract factory. Dictionaryn lagrar menyval och produkt.
 
             Dictionary<string, IProduct> products = new Dictionary<string, IProduct>();
 

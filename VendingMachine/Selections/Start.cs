@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.Selections;
 
-namespace VendingMachine.Menus
+namespace VendingMachine.Selections
 {
-    public class StartMenu
+    public class Start
     {
-        public static void Menu()
+        // Programmets inledande val. Väljer produktkategori för att gå vidare. Här avslutas också programmet
+        // och eventuell växel återbetalas i så fall.
+        public static void SelectCategoryOrExit()
         {
             UtilityMethods.ClearConsole();
 
@@ -16,18 +19,11 @@ namespace VendingMachine.Menus
 
             while (menuLoop)
             {
-                //Console.Clear();
+                Menus.VendingMachineText();
 
-                //Console.WriteLine("***** Varuautomat *****\n");
+                Menus.PrintTotalAmountOfInsertedMoney();
 
-                //Console.WriteLine("Välj produktkategori:\n\n1. Skinka\n2. Glögg\n3. Prinskorv\n----------------\n4. Avsluta\n");
-                //Console.Write("Ditt val: ");
-
-                PrintMenu.VendingMachineText();
-
-                PrintMenu.PrintTotalAmountOfInsertedMoney();
-
-                PrintMenu.StartMenu();
+                Menus.StartMenu();
 
                 string userChoice = UtilityMethods.CustomerInput();
 
@@ -36,8 +32,7 @@ namespace VendingMachine.Menus
                     case "1":
                     case "2":
                     case "3":
-                        //ProductFactory pf = ProductFactory.CreateProductFactory(userChoice);
-                        ProductMenu.Menu(ProductFactory.CreateProductFactory(userChoice));
+                        ProductSelection.SelectProduct(ProductFactory.CreateProductFactory(userChoice));
                         break;
                     case "4":
                         if (Wallet.GetWallet().TotalAmountInserted > 0)

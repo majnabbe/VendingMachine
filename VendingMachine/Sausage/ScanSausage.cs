@@ -8,11 +8,15 @@ namespace VendingMachine.Sausage
 {
     public class ScanSausage : ProductInformation, IProduct
     {
+        // Produkt. Ärver av den abstrakta klassen och interfacet.
+
         public override string Category { get { return "Prinskorv"; } }
         public override string Name { get { return "Scan prinskorv"; } }
         public override string ProductDescription { get { return "Svensk prinskorv med tunt skinn. Vikt 600g."; } }
         public override int Price { get { return 51; } }
 
+        // Kontrollerar om tillräckligt med pengar har matats in för att genomföra köpet. Avbryter om så inte är fallet, annars
+        // genomförs köpet och produkten används.
         public void Buy()
         {
             if (!Wallet.GetWallet().CheckAmount(Price))
@@ -33,12 +37,14 @@ namespace VendingMachine.Sausage
             UtilityMethods.ClearScreenAndContinue();
         }
 
+        // Produktbeskrivning.
         public void Description()
         {
             Console.Clear();
             Console.WriteLine($"Beskrivning: {ProductDescription}");
         }
 
+        // Produktanvändning.
         public void Use()
         {
             Console.WriteLine($"\nSväljer en hel {Name} och mår illa.");
