@@ -35,11 +35,7 @@ namespace VendingMachine.Selections
                         ProductSelection.SelectProduct(ProductFactory.CreateProductFactory(userChoice));
                         break;
                     case "4":
-                        if (Wallet.GetWallet().TotalAmountInserted > 0)
-                        {
-                            Wallet.GetWallet().CalculateChange(Wallet.GetWallet().TotalAmountInserted);
-                            UtilityMethods.ClearScreenAndContinue();
-                        }
+                        Wallet.GetWallet().ReturnChange();
                         menuLoop = false;
                         UtilityMethods.ClearConsole();
                         Console.WriteLine("Programmet avslutas. Tryck på valfri tangent för att stänga fönstret.");

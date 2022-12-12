@@ -52,6 +52,21 @@ namespace VendingMachine
             TotalAmountInserted -= price;
         }
 
+        // Betalar tillbaka eventuell växel.
+        public void ReturnChange()
+        {
+            if (TotalAmountInserted > 0)
+            {
+                CalculateChange(TotalAmountInserted);
+                UtilityMethods.ClearScreenAndContinue();
+            }
+            else
+            {
+                Console.WriteLine("\nInga pengar är inmatade.");
+                UtilityMethods.ClearScreenAndContinue();
+            }
+        }
+
         // Beräknar hur mycket växel som ska returneras och i vilka valörer.
         public void CalculateChange(int amount)
         {
@@ -106,7 +121,7 @@ namespace VendingMachine
             }
         }
 
-        // Ett monster och en skymf mot SOLID. Skriver ut plånboken och hanterar beräkningen av pengarna i den.
+        // Ett monster och en större skymf mot SOLID än vanligt. Skriver ut plånboken och hanterar beräkningen av pengarna i den.
         public void InsertMoney(IProduct product)
         {
             UtilityMethods.ClearConsole();

@@ -40,6 +40,9 @@ namespace VendingMachine.Selections
                         BuyOrCancel.BuyProductOrCancel(product);
                         break;
                     case "4":
+                        Wallet.GetWallet().ReturnChange();
+                        break;
+                    case "5":
                         menuLoop = false;
                         UtilityMethods.ClearConsole();
                         break;
